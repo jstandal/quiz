@@ -49,6 +49,14 @@ const quizes = () => {
         });
     };
 
+    const removeAlternative = (e, i) => {
+        const newObj = quiz;
+
+        newObj.questions[i].alternatives.splice(e, 1);
+
+        setQuiz({ ...newObj });
+    };
+
     return (
         <div className={styles.container}>
             <h2>{quiz.heading}</h2>
@@ -56,22 +64,29 @@ const quizes = () => {
             <button onClick={() => changeHeading('hello world')}>
                 Change heading
             </button>
+
             <button onClick={() => addQuestion()}>Add question</button>
             <div>
                 {quiz.questions.map((value, i) => {
                     return (
                         <div key={i}>
                             <h3>{value.text}</h3>
-                            {value.alternatives.map((element, i) => {
+                            {value.alternatives.map((element, j) => {
                                 return (
                                     <div
                                         className={styles.alternatives}
-                                        key={'q' + i}
-                                        index={i}
+                                        key={'q' + j}
+                                        index={j}
                                     >
                                         <p>{element}</p>
                                         <button>Edit</button>
-                                        <button>Remove</button>
+                                        <button
+                                            onClick={() =>
+                                                removeAlternative(element, i)
+                                            }
+                                        >
+                                            Remove
+                                        </button>
                                     </div>
                                 );
                             })}
