@@ -86,6 +86,7 @@ const quizes = () => {
                                         <p>{element[0]}</p>
                                         <div>
                                             <input
+                                                className={styles.clicks}
                                                 type='checkbox'
                                                 onChange={() =>
                                                     handleChange(
@@ -95,8 +96,11 @@ const quizes = () => {
                                                     )
                                                 }
                                             />
-                                            <button>Edit</button>
+                                            <button className={styles.clicks}>
+                                                Edit
+                                            </button>
                                             <button
+                                                className={styles.clicks}
                                                 onClick={() =>
                                                     removeAlternative(
                                                         element,
