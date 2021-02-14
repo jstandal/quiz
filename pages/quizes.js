@@ -35,15 +35,13 @@ const quizes = () => {
     };
 
     const addQuestion = () => {
-        const indexLen = quiz.questions.length;
-
         setQuiz({
             ...quiz,
             questions: [
                 ...quiz.questions,
                 {
                     text: 'New question',
-                    alternatives: ['New alternative', true],
+                    alternatives: [['New alternative', true]],
                 },
             ],
         });
@@ -57,6 +55,12 @@ const quizes = () => {
         setQuiz({ ...newObj });
     };
 
+    const handleChange = (e, i, j) => {
+        const newObj = quiz;
+
+        console.log(e);
+    };
+
     return (
         <div className={styles.container}>
             <h2>{quiz.heading}</h2>
@@ -64,12 +68,13 @@ const quizes = () => {
             <button onClick={() => changeHeading('hello world')}>
                 Change heading
             </button>
+            <button onClick={() => console.log(quiz)}>Console</button>
 
             <button onClick={() => addQuestion()}>Add question</button>
             <div>
                 {quiz.questions.map((value, i) => {
                     return (
-                        <div key={i}>
+                        <div className={styles.questions} key={i}>
                             <h3>{value.text}</h3>
                             {value.alternatives.map((element, j) => {
                                 return (
@@ -78,15 +83,30 @@ const quizes = () => {
                                         key={'q' + j}
                                         index={j}
                                     >
-                                        <p>{element}</p>
-                                        <button>Edit</button>
-                                        <button
-                                            onClick={() =>
-                                                removeAlternative(element, i)
-                                            }
-                                        >
-                                            Remove
-                                        </button>
+                                        <p>{element[0]}</p>
+                                        <div>
+                                            <input
+                                                type='checkbox'
+                                                onChange={() =>
+                                                    handleChange(
+                                                        element[1],
+                                                        i,
+                                                        j
+                                                    )
+                                                }
+                                            />
+                                            <button>Edit</button>
+                                            <button
+                                                onClick={() =>
+                                                    removeAlternative(
+                                                        element,
+                                                        i
+                                                    )
+                                                }
+                                            >
+                                                Remove
+                                            </button>
+                                        </div>
                                     </div>
                                 );
                             })}
