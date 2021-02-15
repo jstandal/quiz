@@ -51,17 +51,21 @@ const quizes = () => {
         const newObj = quiz;
 
         newObj.questions[i].alternatives.splice(e, 1);
-
         setQuiz({ ...newObj });
     };
 
     const handleChange = (e, i, j) => {
         const newObj = quiz;
-
         const newValue = e ? false : true;
 
         newObj.questions[i].alternatives[j][1] = newValue;
+        setQuiz({ ...newObj });
+    };
 
+    const addAlternative = (i) => {
+        const newObj = quiz;
+
+        newObj.questions[i].alternatives.push(['New alternative', false]);
         setQuiz({ ...newObj });
     };
 
@@ -107,10 +111,7 @@ const quizes = () => {
                                             <button
                                                 className={styles.clicks}
                                                 onClick={() =>
-                                                    removeAlternative(
-                                                        element,
-                                                        i
-                                                    )
+                                                    removeAlternative(j, i)
                                                 }
                                             >
                                                 Remove
@@ -119,6 +120,9 @@ const quizes = () => {
                                     </div>
                                 );
                             })}
+                            <button onClick={() => addAlternative(i)}>
+                                Add alternative
+                            </button>
                         </div>
                     );
                 })}
