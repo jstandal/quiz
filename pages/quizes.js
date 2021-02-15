@@ -58,7 +58,11 @@ const quizes = () => {
     const handleChange = (e, i, j) => {
         const newObj = quiz;
 
-        console.log(e);
+        const newValue = e ? false : true;
+
+        newObj.questions[i].alternatives[j][1] = newValue;
+
+        setQuiz({ ...newObj });
     };
 
     return (
@@ -87,6 +91,7 @@ const quizes = () => {
                                         <div>
                                             <input
                                                 className={styles.clicks}
+                                                checked={element[1]}
                                                 type='checkbox'
                                                 onChange={() =>
                                                     handleChange(
