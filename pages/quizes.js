@@ -78,7 +78,6 @@ const quizes = () => {
             </button>
             <button onClick={() => console.log(quiz)}>Console</button>
 
-            <button onClick={() => addQuestion()}>Add question</button>
             <div>
                 {quiz.questions.map((value, i) => {
                     return (
@@ -126,6 +125,14 @@ const quizes = () => {
                         </div>
                     );
                 })}
+                <div className={styles.questions}>
+                    <button
+                        onClick={() => addQuestion()}
+                        className={styles.addButtons}
+                    >
+                        Add question
+                    </button>
+                </div>
             </div>
         </div>
     );
