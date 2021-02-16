@@ -2,6 +2,8 @@ import NewTest from './NewTest';
 import { useState, useEffect } from 'react';
 import styles from '../styles/Home.module.css';
 import Home from '.';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
 
 const quizes = () => {
     const quiz01 = {
@@ -82,7 +84,14 @@ const quizes = () => {
                 {quiz.questions.map((value, i) => {
                     return (
                         <div className={styles.questions} key={i}>
-                            <h3>{value.text}</h3>
+                            <div className={styles.flex}>
+                                <h3>{value.text}</h3>
+                                <FontAwesomeIcon
+                                    icon={faEdit}
+                                    className={styles.icon}
+                                />
+                            </div>
+
                             {value.alternatives.map((element, j) => {
                                 return (
                                     <div
